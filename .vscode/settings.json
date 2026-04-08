@@ -1,0 +1,5 @@
+{
+    "python.analysis.extraPaths": [
+        "/workspaces/Final-Year-project/.venv/lib/python3.12/site-packages"
+    ]
+}
