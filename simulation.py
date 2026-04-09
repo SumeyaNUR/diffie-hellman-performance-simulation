@@ -1,4 +1,3 @@
-
 import time
 import random
 import statistics
@@ -7,7 +6,6 @@ from cryptography.hazmat.primitives.asymmetric import dh, ec
 from cryptography.hazmat.primitives import serialization
 from cryptography.hazmat.primitives.kdf.hkdf import HKDF
 from cryptography.hazmat.primitives import hashes
-
 
 
 # Link model
