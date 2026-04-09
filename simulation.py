@@ -1,5 +1,3 @@
-# Install cryptography if needed:
-# python3 -m pip install cryptography
 
 import time
 import random
@@ -11,20 +9,20 @@ from cryptography.hazmat.primitives.kdf.hkdf import HKDF
 from cryptography.hazmat.primitives import hashes
 
 
-# -----------------------------
-# Link model
-# -----------------------------
-DISTANCE_KM = 500
-PACKET_LOSS = 0.30
-SPEED_IN_FIBRE_KM_PER_S = 200000  # Approx signal speed in fibre
-ONE_WAY_DELAY_S = DISTANCE_KM / SPEED_IN_FIBRE_KM_PER_S
-ROUND_TRIP_DELAY_S = ONE_WAY_DELAY_S * 2
 
-# Generate DH parameters once
+# Link model
+
+LINK_DISTANCE_KM = 500
+LOSS_PROBABILITY = 0.30
+FIBRE_SIGNAL_SPEED_KM_PER_S = 200000  
+SINGLE_TRIP_DELAY_S = LINK_DISTANCE_KM / FIBRE_SIGNAL_SPEED_KM_PER_S
+RETURN_TRIP_DELAY_S = SINGLE_TRIP_DELAY_S * 2
+
+
 DH_PARAMETERS = dh.generate_parameters(generator=2, key_size=2048)
 
 
-def simulate_transmission(payload_bytes, loss_rate=PACKET_LOSS):
+def simulate_transmission(payload_bytes, loss_rate=LOSS_PROBABILITY):
     """
     Simulate sending one message over a lossy 500 km link.
     Returns:
@@ -38,7 +36,7 @@ def simulate_transmission(payload_bytes, loss_rate=PACKET_LOSS):
 
     while True:
         attempts += 1
-        total_delay_s += ROUND_TRIP_DELAY_S
+        total_delay_s += RETURN_TRIP_DELAY_S
         bytes_sent += payload_bytes
 
         if random.random() >= loss_rate:
@@ -47,9 +45,9 @@ def simulate_transmission(payload_bytes, loss_rate=PACKET_LOSS):
     return total_delay_s, attempts, bytes_sent
 
 
-# -----------------------------
+
 # Finite-field Diffie-Hellman
-# -----------------------------
+
 def run_ffdh():
     start = time.perf_counter()
 
@@ -103,9 +101,9 @@ def run_ffdh():
     }
 
 
-# -----------------------------
+
 # Elliptic Curve Diffie-Hellman
-# -----------------------------
+
 def run_ecdh():
     start = time.perf_counter()
 
@@ -159,9 +157,9 @@ def run_ecdh():
     }
 
 
-# -----------------------------
+
 # Repeated trials
-# -----------------------------
+
 def run_trials(protocol_fn, trials=5):
     results = []
     for _ in range(trials):
