@@ -1,29 +1,60 @@
-This project was completed as part of my BSc (Hons) in Cyber Security and Digital Forensics at Kingston University.
+Diffie-Hellman Protocol Performance Simulation
 
-The project investigates common Wi-Fi attack patterns within IEEE 802.11 wireless networks and presents the development of an automated detection system capable of identifying deauthentication attacks through protocol analysis.
+## Overview
 
-The system analyses captured network traffic and applies rule-based detection techniques to distinguish malicious activity from normal wireless communication.
+This Python project compares the performance of two cryptographic key exchange methods:
 
-Objectives
-Investigate common wireless attack techniques targeting IEEE 802.11 networks.
-Analyse packet captures (PCAP files) to identify malicious traffic patterns.
-Develop an automated detection tool using Python.
-Detect Wi-Fi deauthentication attacks through protocol analysis.
-Evaluate the effectiveness of the detection system using captured datasets.
+- Finite-field Diffie-Hellman using a 2048-bit key
+- Elliptic Curve Diffie-Hellman using the SECP256R1 curve
 
-Features
-Automated detection of deauthentication attacks.
-Analysis of IEEE 802.11 wireless traffic.
-PCAP file processing.
-Rule-based attack detection.
-Packet inspection using Scapy.
-Network traffic analysis using Wireshark.
-Structured data analysis using Python and Pandas.
+The simulation measures how both protocols perform across a lossy 500 km network link.
 
-Technologies Used
-Python
-Scapy
-Wireshark
-Pandas
-SQL
-IEEE 802.11 Protocol Analysis
+It evaluates computational time, network latency, retransmission attempts, transmitted data size and successful shared-key generation.
+
+## Features
+
+- Generates Diffie-Hellman and ECDH key pairs
+- Exchanges public keys between two simulated participants
+- Derives matching 256-bit keys using HKDF and SHA-256
+- Simulates packet loss and retransmissions
+- Models propagation delay across a 500 km fibre link
+- Runs repeated trials for each protocol
+- Calculates average performance results
+- Compares public-key sizes and total transmitted data
+
+## Technologies
+
+- Python
+- Cryptography library
+- Diffie-Hellman
+- Elliptic Curve Cryptography
+- HKDF
+- SHA-256
+- Network simulation
+- Statistical analysis
+
+## Network Model
+
+The simulation uses the following assumptions:
+
+- Link distance: 500 km
+- Packet-loss probability: 30%
+- Fibre signal speed: 200,000 km/s
+- Failed transmissions are repeated until successful
+- Each public key is transmitted separately
+
+These values are configurable inside `simulation.py`.
+
+## Metrics
+
+The program records:
+
+- Key agreement success
+- Computation time
+- Network latency
+- Total latency
+- Total bytes transmitted
+- Number of transmission attempts
+- Public-key size
+- Average results across repeated trials
+
