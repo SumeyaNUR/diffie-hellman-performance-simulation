@@ -177,6 +177,7 @@ def run_ecdh():
 # Repeated trials
 
 def run_trials(protocol_fn, trials=5):
+    """Run a protocol simulation multiple times and return the results."""
     results = []
     for _ in range(trials):
         results.append(protocol_fn())
@@ -184,6 +185,7 @@ def run_trials(protocol_fn, trials=5):
 
 
 def summarise_results(results):
+    """Calculate summary statistics from repeated simulation results."""
     return {
         "protocol": results[0]["protocol"],
         "success_rate": sum(1 for r in results if r["success"]) / len(results),
