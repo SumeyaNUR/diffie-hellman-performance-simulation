@@ -62,7 +62,7 @@ def simulate_transmission(payload_bytes, loss_rate=LOSS_PROBABILITY):
 # Finite-field Diffie-Hellman
 
 def run_ffdh():
-        """Run one finite-field Diffie-Hellman key exchange simulation."""
+    """Run one finite-field Diffie-Hellman key exchange simulation."""
 
     start = time.perf_counter()
 
@@ -120,7 +120,7 @@ def run_ffdh():
 # Elliptic Curve Diffie-Hellman
 
 def run_ecdh():
-        """Run one elliptic-curve Diffie-Hellman key exchange simulation."""
+    """Run one elliptic-curve Diffie-Hellman key exchange simulation."""
     start = time.perf_counter()
 
     private_key_a = ec.generate_private_key(ec.SECP256R1())
