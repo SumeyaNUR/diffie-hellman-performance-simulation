@@ -58,3 +58,12 @@ The program records:
 - Public-key size
 - Average results across repeated trials
 
+
+## How to Run
+
+1. Clone the repository.
+2. Install the required dependency:
+
+```bash
+pip install -r requirements.txt
+
