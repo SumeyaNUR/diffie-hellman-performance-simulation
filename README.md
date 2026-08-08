@@ -66,4 +66,5 @@ The program records:
 
 ```bash
 pip install -r requirements.txt
+```bash
 python simulation.py
