@@ -1,3 +1,18 @@
+"""
+Diffie-Hellman Performance Simulation
+
+Compares finite-field Diffie-Hellman (2048-bit) and elliptic-curve
+Diffie-Hellman (secp256r1) under simulated network conditions.
+
+The simulation measures:
+- Key exchange computation time
+- Network latency
+- Public key sizes
+- Total bytes transmitted
+- Retransmission attempts under packet loss
+- Successful shared-key agreement
+"""
+
 import time
 import random
 import statistics
